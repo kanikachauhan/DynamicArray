@@ -1,0 +1,7 @@
+package a9;
+
+public abstract class DynamicArrayAbstract<T> {
+	
+	public abstract T[] shrinkStrategy(int i) ;
+	public abstract T[] growthStrategy(int i) ;
+}
