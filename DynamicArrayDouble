@@ -1,0 +1,48 @@
+package a9;
+
+public class DynamicArrayDouble <T> extends DynamicArrayAbstract<T> {
+	protected T[] data; // the backing array
+	protected int count; // The number of elements used in the data array
+	@Override
+	public T[] shrinkStrategy(int i) {
+		// TODO Auto-generated method stub
+		T[] newData = (T[]) new Object[data.length*2 - 1];
+		count--;
+		for(int j = 0; j < i; j++) {
+			newData[j] = data[j];
+		}
+
+		for(int j = i; j < size(); j++) {
+			newData[j] = data[j + 1];
+		}
+
+		return newData;
+	}
+
+	private int size() {
+		// TODO Auto-generated method stub
+		return count;
+	}
+
+	@Override
+	public T[] growthStrategy(int i) {
+		// TODO Auto-generated method stub
+		T[] newData;
+		if (count == data.length) {
+			newData = (T[]) new Object[data.length*2 + 1];
+		}
+		else
+			newData = data;
+
+		for(int j = 0; j < i; j++) {
+			newData[j] = data[j];
+		}
+
+		for(int j = size(); j > i; j--) {
+			newData[j] = data[j - 1];
+		}
+		count++;
+		return newData;
+	}
+	
+}
